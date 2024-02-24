@@ -14,6 +14,9 @@ public class MeetingResponseDTO {
     private String title;
     private Integer numberOfPeopleLimit;
     private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private Boolean isAllowingAttendanceAfterStartTime;
+    private Integer currentNumOfAttendees;
     private Integer minAge;
     private Integer maxAge;
     private Location location;

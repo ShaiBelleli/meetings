@@ -26,11 +26,13 @@ public class Meeting {
     private Integer numberOfPeopleLimit;
     @NonNull
     private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private Boolean isAllowingAttendanceAfterStartTime;
+    private Integer currentNumOfAttendees;
     private Integer minAge;
     private Integer maxAge;
     @NonNull
     private Location location;
     private String purpose;
     private String freeText;
-    private Integer numOfAttendees;
 }

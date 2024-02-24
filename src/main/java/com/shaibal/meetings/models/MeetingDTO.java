@@ -15,8 +15,11 @@ public class MeetingDTO {
     @NonNull
     private String title;
     private Integer numberOfPeopleLimit;
+    private Integer currentNumOfAttendees;
     @NonNull
     private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private Boolean isAllowingAttendanceAfterStartTime;
     private Integer minAge;
     private Integer maxAge;
     @NonNull

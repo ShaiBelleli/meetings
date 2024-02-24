@@ -30,6 +30,8 @@ public class MeetingRequestDTOToMeetingDTOMapper implements IMapper<MeetingDTO, 
                 .title(meetingRequestDTO.getTitle())
                 .numberOfPeopleLimit(meetingRequestDTO.getNumberOfPeopleLimit())
                 .startTime(meetingRequestDTO.getStartTime())
+                .endTime(meetingRequestDTO.getEndTime())
+                .isAllowingAttendanceAfterStartTime(meetingRequestDTO.getIsAllowingAttendanceAfterStartTime())
                 .minAge(meetingRequestDTO.getMinAge())
                 .maxAge(meetingRequestDTO.getMaxAge())
                 .location(location)

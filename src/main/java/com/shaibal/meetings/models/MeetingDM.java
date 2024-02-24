@@ -1,32 +1,23 @@
 package com.shaibal.meetings.models;
 
-import lombok.*;
+import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-
+@Component
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class MeetingRequestDTO {
-    // Getting from UserDetails
+public class MeetingDM {
+    private Long id;
     private String organizer;
     private String title;
+    private Integer currentNumOfAttendees;
     private Integer numberOfPeopleLimit;
-    @NonNull
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Boolean isAllowingAttendanceAfterStartTime;
     private Integer minAge;
     private Integer maxAge;
-    @NonNull
-    private String city;
-    @NonNull
-    private String street;
-    @NonNull
-    private String streetNumber;
-    private String arrivalInstructions;
-    // We will be able to filter by purpose
+    private Location location;
     private String purpose;
     private String freeText;
 }

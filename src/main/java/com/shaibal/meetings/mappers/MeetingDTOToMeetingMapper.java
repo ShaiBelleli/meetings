@@ -13,12 +13,14 @@ public class MeetingDTOToMeetingMapper implements IMapper<Meeting, MeetingDTO> {
                 .title(meetingDTO.getTitle())
                 .numberOfPeopleLimit(meetingDTO.getNumberOfPeopleLimit())
                 .startTime(meetingDTO.getStartTime())
+                .endTime(meetingDTO.getEndTime())
+                .isAllowingAttendanceAfterStartTime(meetingDTO.getIsAllowingAttendanceAfterStartTime())
                 .minAge(meetingDTO.getMinAge())
                 .maxAge(meetingDTO.getMaxAge())
                 .location(meetingDTO.getLocation())
                 .purpose(meetingDTO.getPurpose())
                 .freeText(meetingDTO.getFreeText())
-                .numOfAttendees(1)
+                .currentNumOfAttendees(1)
                 .build();
     }
 }

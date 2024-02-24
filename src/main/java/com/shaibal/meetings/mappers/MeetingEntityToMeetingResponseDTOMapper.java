@@ -15,6 +15,8 @@ public class MeetingEntityToMeetingResponseDTOMapper implements IMapper<MeetingR
                 .title(entity.getTitle())
                 .numberOfPeopleLimit(entity.getNumberOfPeopleLimit())
                 .startTime(entity.getStartTime())
+                .endTime(entity.getEndTime())
+                .isAllowingAttendanceAfterStartTime(entity.getIsAllowingAttendanceAfterStartTime())
                 .minAge(entity.getMinAge())
                 .maxAge(entity.getMaxAge())
                 .location(entity.getLocation())
