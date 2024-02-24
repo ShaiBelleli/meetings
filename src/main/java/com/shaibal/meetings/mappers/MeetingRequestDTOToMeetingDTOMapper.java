@@ -7,7 +7,7 @@ import com.shaibal.meetings.services.LocationService;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MeetingRequestDTOToMeetingDTOMapper {
+public class MeetingRequestDTOToMeetingDTOMapper implements IMapper<MeetingDTO, MeetingRequestDTO> {
 
     private final LocationService locationService;
 
@@ -15,6 +15,7 @@ public class MeetingRequestDTOToMeetingDTOMapper {
         this.locationService = locationService;
     }
 
+    @Override
     public MeetingDTO map(MeetingRequestDTO meetingRequestDTO) {
         // Build Location from user input using the injected LocationService
         Location location = locationService.buildLocationFromStringsInput(

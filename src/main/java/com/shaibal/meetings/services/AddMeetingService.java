@@ -3,7 +3,6 @@ package com.shaibal.meetings.services;
 import com.shaibal.meetings.mappers.MeetingEntityToMeetingResponseDTOMapper;
 import com.shaibal.meetings.mappers.MeetingDTOToMeetingMapper;
 import com.shaibal.meetings.mappers.MeetingRequestDTOToMeetingDTOMapper;
-import com.shaibal.meetings.models.Location;
 import com.shaibal.meetings.models.MeetingDTO;
 import com.shaibal.meetings.models.MeetingRequestDTO;
 import com.shaibal.meetings.models.MeetingResponseDTO;
@@ -22,16 +21,13 @@ public class AddMeetingService {
     private final MeetingRequestDTOToMeetingDTOMapper meetingRequestDTOToMeetingDTOMapper;
 
     public MeetingResponseDTO add(MeetingRequestDTO meetingRequestDTO) {
-        // Map MeetingRequestDTO to MeetingDTO using the mapper
+
         MeetingDTO meetingDTO = meetingRequestDTOToMeetingDTOMapper.map(meetingRequestDTO);
 
-        // Map MeetingDTO to Meeting entity
-        Meeting meetingEntity = meetingDTOToMeetingMapper.apply(meetingDTO);
+        Meeting meetingEntity = meetingDTOToMeetingMapper.map(meetingDTO);
 
-        // Save the Meeting entity to the repository
         meetingRepository.save(meetingEntity);
 
-        // Map the saved Meeting entity to MeetingResponseDTO
-        return meetingEntityToMeetingResponseDTOMapper.apply(meetingEntity);
+        return meetingEntityToMeetingResponseDTOMapper.map(meetingEntity);
     }
 }

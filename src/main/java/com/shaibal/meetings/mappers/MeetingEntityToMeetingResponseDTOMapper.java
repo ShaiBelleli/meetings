@@ -4,13 +4,11 @@ import com.shaibal.meetings.models.entities.Meeting;
 import com.shaibal.meetings.models.MeetingResponseDTO;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Function;
-
 @Component
-public class MeetingEntityToMeetingResponseDTOMapper implements Function<Meeting, MeetingResponseDTO> {
+public class MeetingEntityToMeetingResponseDTOMapper implements IMapper<MeetingResponseDTO, Meeting> {
 
     @Override
-    public MeetingResponseDTO apply(Meeting entity) {
+    public MeetingResponseDTO map(Meeting entity) {
         return MeetingResponseDTO.builder()
                 .id(entity.getId())
                 .organizer(entity.getOrganizer())

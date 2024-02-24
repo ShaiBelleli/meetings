@@ -18,7 +18,7 @@ public class GetAllMeetingsService {
     public List<MeetingResponseDTO> get() {
         return meetingRepository.findAll()
                 .stream()
-                .map(meetingEntityToMeetingResponseDTOMapper)
+                .map(meetingEntityToMeetingResponseDTOMapper::map)
                 .collect(Collectors.toList());
     }
 }

@@ -2,15 +2,12 @@ package com.shaibal.meetings.mappers;
 
 import com.shaibal.meetings.models.MeetingDTO;
 import com.shaibal.meetings.models.entities.Meeting;
-import com.shaibal.meetings.models.MeetingRequestDTO;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Function;
-
 @Component
-public class MeetingDTOToMeetingMapper implements Function<MeetingDTO, Meeting> {
+public class MeetingDTOToMeetingMapper implements IMapper<Meeting, MeetingDTO> {
     @Override
-    public Meeting apply(MeetingDTO meetingDTO) {
+    public Meeting map(MeetingDTO meetingDTO) {
         return Meeting.builder()
                 .organizer(meetingDTO.getOrganizer())
                 .title(meetingDTO.getTitle())

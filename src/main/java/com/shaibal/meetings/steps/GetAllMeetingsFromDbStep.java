@@ -1,7 +1,7 @@
 package com.shaibal.meetings.steps;
 
 import com.shaibal.meetings.Context;
-import com.shaibal.meetings.constants.ContextConstants;
+import com.shaibal.meetings.constants.ResponseConstants;
 import com.shaibal.meetings.models.MeetingResponseDTO;
 import com.shaibal.meetings.services.GetAllMeetingsService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +18,6 @@ public class GetAllMeetingsFromDbStep implements IStep {
     @Override
     public void execute(Context context) {
         List<MeetingResponseDTO> meetings = getAllMeetings.get();
-        context.setValue(ContextConstants.GET_ALL_MEETINGS_RESPONSE, meetings);
+        context.setValue(ResponseConstants.GET_ALL_MEETINGS_RESPONSE, meetings);
     }
 }

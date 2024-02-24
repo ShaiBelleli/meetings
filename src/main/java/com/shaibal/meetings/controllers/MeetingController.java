@@ -1,9 +1,8 @@
 package com.shaibal.meetings.controllers;
 
+import com.shaibal.meetings.application_services.*;
 import com.shaibal.meetings.models.MeetingRequestDTO;
 import com.shaibal.meetings.models.MeetingResponseDTO;
-import com.shaibal.meetings.delegates.MeetingDelegate;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +13,19 @@ import java.util.List;
 @RequestMapping("/api")
 public class MeetingController {
 
-    private final MeetingDelegate meetingDelegate;
+    private final GetAllMeetingsApplicationService getAllMeetingsApplicationService;
+    private final AddMeetingApplicationService addMeetingApplicationService;
+    private final DeleteMeetingByIdApplicationService deleteMeetingByIdApplicationService;
+    private final AttendMeetingApplicationService attendMeetingApplicationService;
+    private final GetMeetingApplicationService getMeetingApplicationService;
 
-    public MeetingController(MeetingDelegate meetingDelegate) {
-        this.meetingDelegate = meetingDelegate;
+
+    public MeetingController(GetAllMeetingsApplicationService getAllMeetingsApplicationService, AddMeetingApplicationService addMeetingApplicationService, DeleteMeetingByIdApplicationService deleteMeetingByIdApplicationService, AttendMeetingApplicationService attendMeetingApplicationService, GetMeetingApplicationService getMeetingApplicationService) {
+        this.getAllMeetingsApplicationService = getAllMeetingsApplicationService;
+        this.addMeetingApplicationService = addMeetingApplicationService;
+        this.deleteMeetingByIdApplicationService = deleteMeetingByIdApplicationService;
+        this.attendMeetingApplicationService = attendMeetingApplicationService;
+        this.getMeetingApplicationService = getMeetingApplicationService;
     }
 
     @GetMapping("/health")
@@ -27,21 +35,26 @@ public class MeetingController {
 
     @GetMapping("/meetings")
     public ResponseEntity<List<MeetingResponseDTO>> getAllMeetings() {
-        return new ResponseEntity<>(meetingDelegate.getAllMeetings(), HttpStatus.OK);
+        return new ResponseEntity<>(getAllMeetingsApplicationService.getAllMeetings(), HttpStatus.OK);
+    }
+
+    @GetMapping("/meetings/{id}")
+    public ResponseEntity<MeetingResponseDTO> getMeetingById(@PathVariable Long id) throws Exception {
+        return new ResponseEntity<>(getMeetingApplicationService.getMeeting(id), HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity<MeetingResponseDTO> add(@RequestBody MeetingRequestDTO meetingRequestDTO) {
-        return new ResponseEntity<>(meetingDelegate.addMeeting(meetingRequestDTO), HttpStatus.OK);
+    public ResponseEntity<MeetingResponseDTO> add(@RequestBody MeetingRequestDTO meetingRequestDTO) throws Exception {
+        return new ResponseEntity<>(addMeetingApplicationService.addMeeting(meetingRequestDTO), HttpStatus.OK);
     }
 
     @DeleteMapping()
     public ResponseEntity<String> deleteMeetingById(@RequestParam Long meetingId) throws Exception {
-        return new ResponseEntity<>(meetingDelegate.deleteMeetingById(meetingId), HttpStatus.OK);
+        return new ResponseEntity<>(deleteMeetingByIdApplicationService.deleteMeeting(meetingId), HttpStatus.OK);
     }
 
     @PutMapping()
     public ResponseEntity<String> attendMeeting(@RequestParam Long meetingId) throws Exception {
-        return new ResponseEntity<>(meetingDelegate.attendMeeting(meetingId), HttpStatus.OK);
+        return new ResponseEntity<>(attendMeetingApplicationService.attendMeeting(meetingId), HttpStatus.OK);
     }
 }

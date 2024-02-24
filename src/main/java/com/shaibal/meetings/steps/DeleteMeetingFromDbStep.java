@@ -14,6 +14,6 @@ public class DeleteMeetingFromDbStep implements IStep {
 
     @Override
     public void execute(Context context) {
-        deleteMeetingService.delete((Long) context.getValue(ContextConstants.MEETING_ID_TO_DELETE));
+        deleteMeetingService.delete((Long) context.getValue(ContextConstants.MEETING_ID));
     }
 }

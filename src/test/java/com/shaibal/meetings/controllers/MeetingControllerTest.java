@@ -1,6 +1,6 @@
 package com.shaibal.meetings.controllers;
 
-import com.shaibal.meetings.delegates.MeetingDelegate;
+import com.shaibal.meetings.application_services.AddMeetingApplicationService;
 import com.shaibal.meetings.models.MeetingRequestDTO;
 import com.shaibal.meetings.models.MeetingResponseDTO;
 import org.junit.jupiter.api.Test;
@@ -23,20 +23,20 @@ class MeetingControllerTest {
     private MeetingController meetingController;
 
     @Mock
-    private MeetingDelegate meetingDelegate;
+    private AddMeetingApplicationService addMeetingApplicationService;
 
     @Test
-    void addMeeting_ReturnsOkResponse() {
+    void addMeeting_ReturnsOkResponse() throws Exception {
         // Mocking
         MeetingRequestDTO requestDTO = new MeetingRequestDTO();
         MeetingResponseDTO responseDTO = new MeetingResponseDTO();
-        when(meetingDelegate.addMeeting(any(MeetingRequestDTO.class))).thenReturn(responseDTO);
+        when(addMeetingApplicationService.addMeeting(any(MeetingRequestDTO.class))).thenReturn(responseDTO);
 
         // Test
         ResponseEntity<MeetingResponseDTO> response = meetingController.add(requestDTO);
 
         // Verify
-        verify(meetingDelegate).addMeeting(requestDTO);
+        verify(addMeetingApplicationService).addMeeting(requestDTO);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(responseDTO, response.getBody());
     }

@@ -16,7 +16,7 @@ public class ValidateAddMeetingStep implements IStep {
 
     @Override
     public void execute(Context context) {
-        MeetingRequestDTO meetingToAdd = (MeetingRequestDTO) context.getValue(ContextConstants.MEETING_REQUEST_DTO_TO_ADD);
+        MeetingRequestDTO meetingToAdd = (MeetingRequestDTO) context.getValue(ContextConstants.MEETING_REQUEST_DTO);
 
         validateAddMeetingService.validate(meetingToAdd);
     }
