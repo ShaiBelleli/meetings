@@ -5,16 +5,14 @@ import com.shaibal.meetings.constants.ContextConstants;
 import com.shaibal.meetings.constants.ResponseConstants;
 import com.shaibal.meetings.models.MeetingResponseDTO;
 import com.shaibal.meetings.services.GetMeetingService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class GetMeetingFromDbStep implements IStep {
 
     private final GetMeetingService getMeetingService;
-
-    public GetMeetingFromDbStep(GetMeetingService getMeetingService) {
-        this.getMeetingService = getMeetingService;
-    }
 
     @Override
     public void execute(Context context) throws Exception {

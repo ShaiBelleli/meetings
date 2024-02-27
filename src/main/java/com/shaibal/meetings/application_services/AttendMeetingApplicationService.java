@@ -6,14 +6,16 @@ import com.shaibal.meetings.constants.ContextConstants;
 import com.shaibal.meetings.steps.AttendMeetingStep;
 import com.shaibal.meetings.steps.notifications.NotifyMeetingAttendedStep;
 import com.shaibal.meetings.steps.validators.ValidateAttendMeetingStep;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class AttendMeetingApplicationService {
 
-    ValidateAttendMeetingStep validateAttendMeetingStep;
-    AttendMeetingStep attendMeetingStep;
-    NotifyMeetingAttendedStep notifyMeetingAttendedStep;
+    private final ValidateAttendMeetingStep validateAttendMeetingStep;
+    private final AttendMeetingStep attendMeetingStep;
+    private final NotifyMeetingAttendedStep notifyMeetingAttendedStep;
 
     public String attendMeeting(String meetingId) throws Exception {
         Context context = initContext(meetingId);

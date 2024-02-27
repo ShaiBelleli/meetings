@@ -1,5 +1,6 @@
 package com.shaibal.meetings.validators;
 
+import com.shaibal.meetings.models.Location;
 import com.shaibal.meetings.models.MeetingRequestDTO;
 import com.shaibal.meetings.services.validators.ValidateAddMeetingService;
 import org.apache.coyote.BadRequestException;
@@ -22,7 +23,11 @@ class ValidateAddMeetingServiceTest {
     void validate_StartDateNotExpired() throws BadRequestException {
         // Mocking
         MeetingRequestDTO requestDTO = new MeetingRequestDTO();
+        Location location = new Location("location_1", (1.0), (1.0));
+
         requestDTO.setStartTime(LocalDateTime.now().plusHours(1)); // Set the start time to be in the future
+        requestDTO.setTitle("meeting_1");
+        requestDTO.setLocation(location);
 
         // Test
         validateAddMeetingService.validate(requestDTO);
@@ -32,7 +37,11 @@ class ValidateAddMeetingServiceTest {
     void validate_StartDateExpired_ThrowsException() {
         // Mocking
         MeetingRequestDTO requestDTO = new MeetingRequestDTO();
+        Location location = new Location("location_1", (1.0), (1.0));
+
         requestDTO.setStartTime(LocalDateTime.now().minusHours(1)); // Set the start time to be in the past
+        requestDTO.setTitle("meeting_1");
+        requestDTO.setLocation(location);
 
         // Test
         assertThrows(IllegalArgumentException.class, () -> validateAddMeetingService.validate(requestDTO));

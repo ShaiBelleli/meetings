@@ -19,16 +19,14 @@ public class MeetingController {
     private final DeleteMeetingByIdApplicationService deleteMeetingByIdApplicationService;
     private final AttendMeetingApplicationService attendMeetingApplicationService;
     private final GetMeetingApplicationService getMeetingApplicationService;
-    private final DeleteAllMeetingsApplicationService deleteAllMeetingsApplicationService;
 
 
-    public MeetingController(GetAllMeetingsApplicationService getAllMeetingsApplicationService, AddMeetingApplicationService addMeetingApplicationService, DeleteMeetingByIdApplicationService deleteMeetingByIdApplicationService, AttendMeetingApplicationService attendMeetingApplicationService, GetMeetingApplicationService getMeetingApplicationService, DeleteAllMeetingsApplicationService deleteAllMeetingsApplicationService) {
+    public MeetingController(GetAllMeetingsApplicationService getAllMeetingsApplicationService, AddMeetingApplicationService addMeetingApplicationService, DeleteMeetingByIdApplicationService deleteMeetingByIdApplicationService, AttendMeetingApplicationService attendMeetingApplicationService, GetMeetingApplicationService getMeetingApplicationService) {
         this.getAllMeetingsApplicationService = getAllMeetingsApplicationService;
         this.addMeetingApplicationService = addMeetingApplicationService;
         this.deleteMeetingByIdApplicationService = deleteMeetingByIdApplicationService;
         this.attendMeetingApplicationService = attendMeetingApplicationService;
         this.getMeetingApplicationService = getMeetingApplicationService;
-        this.deleteAllMeetingsApplicationService = deleteAllMeetingsApplicationService;
     }
 
     @GetMapping("/health")
@@ -54,11 +52,6 @@ public class MeetingController {
     @DeleteMapping()
     public ResponseEntity<String> deleteMeetingById(@NonNull @RequestParam String meetingId) throws Exception {
         return new ResponseEntity<>(deleteMeetingByIdApplicationService.deleteMeeting(meetingId), HttpStatus.OK);
-    }
-
-    @DeleteMapping("/meetings")
-    public ResponseEntity<String> deleteAllMeetings() {
-        return new ResponseEntity<>(deleteAllMeetingsApplicationService.deleteAllMeetings(), HttpStatus.OK);
     }
 
     @PutMapping()
