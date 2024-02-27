@@ -5,6 +5,7 @@ import com.shaibal.meetings.models.MeetingRequestDTO;
 import com.shaibal.meetings.models.MeetingResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +19,16 @@ public class MeetingController {
     private final DeleteMeetingByIdApplicationService deleteMeetingByIdApplicationService;
     private final AttendMeetingApplicationService attendMeetingApplicationService;
     private final GetMeetingApplicationService getMeetingApplicationService;
+    private final DeleteAllMeetingsApplicationService deleteAllMeetingsApplicationService;
 
 
-    public MeetingController(GetAllMeetingsApplicationService getAllMeetingsApplicationService, AddMeetingApplicationService addMeetingApplicationService, DeleteMeetingByIdApplicationService deleteMeetingByIdApplicationService, AttendMeetingApplicationService attendMeetingApplicationService, GetMeetingApplicationService getMeetingApplicationService) {
+    public MeetingController(GetAllMeetingsApplicationService getAllMeetingsApplicationService, AddMeetingApplicationService addMeetingApplicationService, DeleteMeetingByIdApplicationService deleteMeetingByIdApplicationService, AttendMeetingApplicationService attendMeetingApplicationService, GetMeetingApplicationService getMeetingApplicationService, DeleteAllMeetingsApplicationService deleteAllMeetingsApplicationService) {
         this.getAllMeetingsApplicationService = getAllMeetingsApplicationService;
         this.addMeetingApplicationService = addMeetingApplicationService;
         this.deleteMeetingByIdApplicationService = deleteMeetingByIdApplicationService;
         this.attendMeetingApplicationService = attendMeetingApplicationService;
         this.getMeetingApplicationService = getMeetingApplicationService;
+        this.deleteAllMeetingsApplicationService = deleteAllMeetingsApplicationService;
     }
 
     @GetMapping("/health")
@@ -39,7 +42,7 @@ public class MeetingController {
     }
 
     @GetMapping("/meetings/{id}")
-    public ResponseEntity<MeetingResponseDTO> getMeetingById(@PathVariable Long id) throws Exception {
+    public ResponseEntity<MeetingResponseDTO> getMeetingById(@PathVariable String id) throws Exception {
         return new ResponseEntity<>(getMeetingApplicationService.getMeeting(id), HttpStatus.OK);
     }
 
@@ -49,12 +52,17 @@ public class MeetingController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<String> deleteMeetingById(@RequestParam Long meetingId) throws Exception {
+    public ResponseEntity<String> deleteMeetingById(@NonNull @RequestParam String meetingId) throws Exception {
         return new ResponseEntity<>(deleteMeetingByIdApplicationService.deleteMeeting(meetingId), HttpStatus.OK);
     }
 
+    @DeleteMapping("/meetings")
+    public ResponseEntity<String> deleteAllMeetings() {
+        return new ResponseEntity<>(deleteAllMeetingsApplicationService.deleteAllMeetings(), HttpStatus.OK);
+    }
+
     @PutMapping()
-    public ResponseEntity<String> attendMeeting(@RequestParam Long meetingId) throws Exception {
+    public ResponseEntity<String> attendMeeting(@RequestParam String meetingId) throws Exception {
         return new ResponseEntity<>(attendMeetingApplicationService.attendMeeting(meetingId), HttpStatus.OK);
     }
 }

@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 public class ValidateAttendMeetingService {
 
     public void validate(MeetingDM meetingDM) throws NoSuchElementException {
-        Long meetingId = meetingDM.getId();
+        String meetingId = meetingDM.getId();
         LocalDateTime meetingStartTime = meetingDM.getStartTime();
         LocalDateTime meetingEndTime = meetingDM.getEndTime();
         Boolean isAllowingAttendanceAfterStartTime = meetingDM.getIsAllowingAttendanceAfterStartTime();

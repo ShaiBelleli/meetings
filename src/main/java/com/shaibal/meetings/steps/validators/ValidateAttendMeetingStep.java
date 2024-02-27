@@ -25,7 +25,7 @@ public class ValidateAttendMeetingStep implements IStep {
 
     @Override
     public void execute(Context context) throws Exception {
-        Long meetingId = (Long) context.getValue(ContextConstants.MEETING_ID);
+        String meetingId = (String) context.getValue(ContextConstants.MEETING_ID);
 
         MeetingResponseDTO meetingResponseDTO = getMeetingService.getMeeting(meetingId);
 

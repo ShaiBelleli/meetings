@@ -10,7 +10,7 @@ public class DeleteMeetingService {
 
     private final MeetingRepository meetingRepository;
 
-    public void delete(Long meetingId) {
+    public void delete(String meetingId) {
         meetingRepository.deleteById(meetingId);
     }
 }

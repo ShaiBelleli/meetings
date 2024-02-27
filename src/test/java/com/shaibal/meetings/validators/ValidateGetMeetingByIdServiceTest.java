@@ -27,7 +27,7 @@ class ValidateGetMeetingByIdServiceTest {
     @Test
     void validateMeetingExists() throws Exception {
         // Arrange
-        Long meetingId = 1L;
+        String meetingId = "1";
         Meeting validMeeting = new Meeting();
         when(meetingRepository.findById(meetingId)).thenReturn(Optional.of(validMeeting));
 
@@ -40,7 +40,7 @@ class ValidateGetMeetingByIdServiceTest {
     @Test
     void validateMeetingNotFound() {
         // Arrange
-        Long meetingId = 1L;
+        String meetingId = "1";
         when(meetingRepository.findById(meetingId)).thenReturn(Optional.empty());
 
         // Act and Assert

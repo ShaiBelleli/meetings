@@ -6,7 +6,9 @@ import com.shaibal.meetings.models.Location;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.lang.NonNull;
 
 
@@ -16,10 +18,12 @@ import org.springframework.lang.NonNull;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "meetings")
 public class Meeting {
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(generator = "custom-id")
+    @GenericGenerator(name = "custom-id", strategy = "com.shaibal.meetings.util.CustomIdGenerator")
+    private String id;
     private String organizer; // Should get from User Details
     @NonNull
     private String title;

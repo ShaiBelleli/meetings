@@ -2,6 +2,7 @@ package com.shaibal.meetings.validators;
 
 import com.shaibal.meetings.models.MeetingRequestDTO;
 import com.shaibal.meetings.services.validators.ValidateAddMeetingService;
+import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,7 +19,7 @@ class ValidateAddMeetingServiceTest {
     private ValidateAddMeetingService validateAddMeetingService;
 
     @Test
-    void validate_StartDateNotExpired() {
+    void validate_StartDateNotExpired() throws BadRequestException {
         // Mocking
         MeetingRequestDTO requestDTO = new MeetingRequestDTO();
         requestDTO.setStartTime(LocalDateTime.now().plusHours(1)); // Set the start time to be in the future

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Component
 @Data
 public class MeetingDM {
-    private Long id;
+    private String id;
     private String organizer;
     private String title;
     private Integer currentNumOfAttendees;

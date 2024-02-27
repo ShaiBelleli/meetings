@@ -23,7 +23,7 @@ class ValidateDeleteMeetingByIdServiceTest {
     @Test
     void validate_IdExistsInDb() throws Exception {
         // Mocking
-        Long meetingId = 1L;
+        String meetingId = "1";
 
         // Test
         validateDeleteMeetingByIdService.validate(meetingId);
@@ -35,7 +35,7 @@ class ValidateDeleteMeetingByIdServiceTest {
     @Test
     void validate_IdDoesNotExistInDb_ThrowsException() throws Exception {
         // Mocking
-        Long meetingId = 2L;
+        String meetingId = "2";
         // Assuming validateGetMeetingByIdService.validate throws an exception when the ID doesn't exist
         doThrow(new Exception("Meeting not found")).when(validateGetMeetingByIdService).validate(meetingId);
 

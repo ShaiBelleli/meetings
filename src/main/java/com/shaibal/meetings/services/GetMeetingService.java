@@ -18,9 +18,9 @@ public class GetMeetingService {
         this.meetingEntityToMeetingResponseDTOMapper = meetingEntityToMeetingResponseDTOMapper;
     }
 
-    public MeetingResponseDTO getMeeting(Long meetingId) {
+    public MeetingResponseDTO getMeeting(String meetingId) {
         return meetingRepository.findById(meetingId)
                 .map(meetingEntityToMeetingResponseDTOMapper::map)
-                .orElseThrow(() -> new NoSuchElementException("Meeting with id " + meetingId + "not found"));
+                .orElseThrow(() -> new NoSuchElementException("Meeting with id " + meetingId + " not found"));
     }
 }

@@ -11,20 +11,17 @@ import java.time.LocalDateTime;
 public class MeetingRequestDTO {
     // Getting from UserDetails
     private String organizer;
+    @NonNull
     private String title;
     private Integer numberOfPeopleLimit;
     @NonNull
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Boolean isAllowingAttendanceAfterStartTime;
+    @NonNull
+    private Location location;
     private Integer minAge;
     private Integer maxAge;
-    @NonNull
-    private String city;
-    @NonNull
-    private String street;
-    @NonNull
-    private String streetNumber;
     private String arrivalInstructions;
     // We will be able to filter by purpose
     private String purpose;

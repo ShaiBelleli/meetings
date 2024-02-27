@@ -4,21 +4,28 @@ import com.shaibal.meetings.Context;
 import com.shaibal.meetings.constants.ResponseConstants;
 import com.shaibal.meetings.constants.ContextConstants;
 import com.shaibal.meetings.models.MeetingResponseDTO;
+import com.shaibal.meetings.steps.GetMeetingFromDbStep;
 import org.springframework.stereotype.Component;
 
 @Component
 public class GetMeetingApplicationService {
 
-    public MeetingResponseDTO getMeeting(Long meetingId) throws Exception {
+    private final GetMeetingFromDbStep getMeetingFromDbStep;
+
+    public GetMeetingApplicationService(GetMeetingFromDbStep getMeetingFromDbStep) {
+        this.getMeetingFromDbStep = getMeetingFromDbStep;
+    }
+
+    public MeetingResponseDTO getMeeting(String meetingId) throws Exception {
         Context context = initContext(meetingId);
 
 //        validateGetMeetingStep.execute(context);
-//        getMeetingFromDbStep.execute(context);
+        getMeetingFromDbStep.execute(context);
 
         return (MeetingResponseDTO) context.getValue(ResponseConstants.GET_MEETING_RESPONSE);
     }
 
-    public Context initContext(Long meetingId) {
+    public Context initContext(String meetingId) {
         Context context = new Context();
 
         context.setValue(ContextConstants.MEETING_ID, meetingId);

@@ -17,12 +17,6 @@ public class MeetingRequestDTOToMeetingDTOMapper implements IMapper<MeetingDTO, 
 
     @Override
     public MeetingDTO map(MeetingRequestDTO meetingRequestDTO) {
-        // Build Location from user input using the injected LocationService
-        Location location = locationService.buildLocationFromStringsInput(
-                meetingRequestDTO.getCity(),
-                meetingRequestDTO.getStreet(),
-                meetingRequestDTO.getStreetNumber()
-        );
 
         // Map MeetingRequestDTO to MeetingDTO
         return MeetingDTO.builder()
@@ -34,7 +28,7 @@ public class MeetingRequestDTOToMeetingDTOMapper implements IMapper<MeetingDTO, 
                 .isAllowingAttendanceAfterStartTime(meetingRequestDTO.getIsAllowingAttendanceAfterStartTime())
                 .minAge(meetingRequestDTO.getMinAge())
                 .maxAge(meetingRequestDTO.getMaxAge())
-                .location(location)
+                .location(meetingRequestDTO.getLocation())
                 .purpose(meetingRequestDTO.getPurpose())
                 .freeText(meetingRequestDTO.getFreeText())
                 .build();

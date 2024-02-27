@@ -12,7 +12,7 @@ public class ValidateGetMeetingByIdService {
 
     private final MeetingRepository meetingRepository;
 
-    public void validate(Long meetingId) throws Exception {
+    public void validate(String meetingId) throws Exception {
         meetingRepository.findById(meetingId).orElseThrow(() -> new NoSuchElementException("Meeting with id " + meetingId + "not found."));
     }
 }

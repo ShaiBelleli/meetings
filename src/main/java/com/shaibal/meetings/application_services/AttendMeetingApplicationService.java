@@ -15,7 +15,7 @@ public class AttendMeetingApplicationService {
     AttendMeetingStep attendMeetingStep;
     NotifyMeetingAttendedStep notifyMeetingAttendedStep;
 
-    public String attendMeeting(Long meetingId) throws Exception {
+    public String attendMeeting(String meetingId) throws Exception {
         Context context = initContext(meetingId);
 
         validateAttendMeetingStep.execute(context);
@@ -25,7 +25,7 @@ public class AttendMeetingApplicationService {
         return (String) context.getValue(ResponseConstants.ATTEND_MEETING_RESPONSE);
     }
 
-    public Context initContext(Long meetingId) {
+    public Context initContext(String meetingId) {
         Context context = new Context();
 
         context.setValue(ContextConstants.MEETING_ID, meetingId);

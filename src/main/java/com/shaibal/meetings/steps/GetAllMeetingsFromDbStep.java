@@ -13,11 +13,12 @@ import java.util.List;
 @Component
 public class GetAllMeetingsFromDbStep implements IStep {
 
-    private final GetAllMeetingsService getAllMeetings;
+    private final GetAllMeetingsService getAllMeetingsService;
 
     @Override
     public void execute(Context context) {
-        List<MeetingResponseDTO> meetings = getAllMeetings.get();
+        List<MeetingResponseDTO> meetings = getAllMeetingsService.get();
+
         context.setValue(ResponseConstants.GET_ALL_MEETINGS_RESPONSE, meetings);
     }
 }

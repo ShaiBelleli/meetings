@@ -9,11 +9,11 @@ public class ValidateDeleteMeetingByIdService {
 
     private final ValidateGetMeetingByIdService validateGetMeetingByIdService;
 
-    public void validate(Long meetingId) throws Exception {
+    public void validate(String meetingId) throws Exception {
         validateIdExistsInDb(meetingId);
     }
 
-    private void validateIdExistsInDb(Long meetingId) throws Exception {
+    private void validateIdExistsInDb(String meetingId) throws Exception {
         validateGetMeetingByIdService.validate(meetingId);
     }
 }
