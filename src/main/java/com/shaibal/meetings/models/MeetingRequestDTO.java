@@ -9,8 +9,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MeetingRequestDTO {
-    // Getting from UserDetails
-    private String organizer;
     @NonNull
     private String title;
     private Integer numberOfPeopleLimit;

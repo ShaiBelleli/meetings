@@ -15,8 +15,8 @@ public class ValidateLoginInputService {
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     public void validate(ValidateLoginInputDM validateLoginInputDM) throws BadRequestException {
-        authenticateUser(validateLoginInputDM);
         validateEmailExistsInDb(validateLoginInputDM.getEmail());
+        authenticateUser(validateLoginInputDM);
     }
 
     private void authenticateUser(ValidateLoginInputDM validateLoginInputDM) {

@@ -3,6 +3,7 @@ package com.shaibal.meetings.controllers;
 import com.shaibal.meetings.application_services.*;
 import com.shaibal.meetings.models.MeetingRequestDTO;
 import com.shaibal.meetings.models.MeetingResponseDTO;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
@@ -45,8 +46,10 @@ public class MeetingController {
     }
 
     @PostMapping()
-    public ResponseEntity<MeetingResponseDTO> add(@RequestBody MeetingRequestDTO meetingRequestDTO) throws Exception {
-        return new ResponseEntity<>(addMeetingApplicationService.addMeeting(meetingRequestDTO), HttpStatus.OK);
+    public ResponseEntity<MeetingResponseDTO> add(
+            @RequestBody MeetingRequestDTO meetingRequestDTO,
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION) String jwtToken) throws Exception {
+        return new ResponseEntity<>(addMeetingApplicationService.addMeeting(meetingRequestDTO, jwtToken), HttpStatus.OK);
     }
 
     @DeleteMapping()

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MeetingDTO {
-    private String organizer; // Should get from User Details
+    private String organizer;
     @NonNull
     private String title;
     private Integer numberOfPeopleLimit;

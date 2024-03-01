@@ -8,6 +8,7 @@ import com.shaibal.meetings.models.MeetingRequestDTO;
 import com.shaibal.meetings.models.MeetingResponseDTO;
 import com.shaibal.meetings.models.entities.Meeting;
 import com.shaibal.meetings.repositories.MeetingRepository;
+import com.shaibal.meetings.security.services.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +19,8 @@ public class AddMeetingService {
     private final MeetingRepository meetingRepository;
     private final MeetingEntityToMeetingResponseDTOMapper meetingEntityToMeetingResponseDTOMapper;
     private final MeetingDTOToMeetingMapper meetingDTOToMeetingMapper;
-    private final MeetingRequestDTOToMeetingDTOMapper meetingRequestDTOToMeetingDTOMapper;
 
-    public MeetingResponseDTO add(MeetingRequestDTO meetingRequestDTO) {
-
-        MeetingDTO meetingDTO = meetingRequestDTOToMeetingDTOMapper.map(meetingRequestDTO);
-
+    public MeetingResponseDTO add(MeetingDTO meetingDTO) {
         Meeting meetingEntity = meetingDTOToMeetingMapper.map(meetingDTO);
 
         meetingRepository.save(meetingEntity);

@@ -3,6 +3,7 @@ package com.shaibal.meetings.steps;
 import com.shaibal.meetings.Context;
 import com.shaibal.meetings.constants.ResponseConstants;
 import com.shaibal.meetings.constants.ContextConstants;
+import com.shaibal.meetings.models.MeetingDTO;
 import com.shaibal.meetings.models.MeetingRequestDTO;
 import com.shaibal.meetings.models.MeetingResponseDTO;
 import com.shaibal.meetings.services.AddMeetingService;
@@ -17,9 +18,10 @@ public class AddMeetingToDbStep implements IStep {
 
     @Override
     public void execute(Context context) {
-        MeetingRequestDTO meetingRequestDTO = (MeetingRequestDTO) context.getValue(ContextConstants.MEETING_REQUEST_DTO);
 
-        MeetingResponseDTO meetingResponseDTO = addMeetingService.add(meetingRequestDTO);
+        MeetingDTO meetingDTO = (MeetingDTO) context.getValue(ContextConstants.MEETING_DTO_AFTER_USER_DETAILS_ENRICHMENT);
+
+        MeetingResponseDTO meetingResponseDTO = addMeetingService.add(meetingDTO);
 
         context.setValue(ResponseConstants.ADD_MEETING_RESPONSE, meetingResponseDTO);
     }

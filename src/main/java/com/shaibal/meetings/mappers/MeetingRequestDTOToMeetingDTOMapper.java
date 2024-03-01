@@ -10,9 +10,7 @@ public class MeetingRequestDTOToMeetingDTOMapper implements IMapper<MeetingDTO, 
     @Override
     public MeetingDTO map(MeetingRequestDTO meetingRequestDTO) {
 
-        // Map MeetingRequestDTO to MeetingDTO
         return MeetingDTO.builder()
-                .organizer(meetingRequestDTO.getOrganizer())
                 .title(meetingRequestDTO.getTitle())
                 .numberOfPeopleLimit(meetingRequestDTO.getNumberOfPeopleLimit())
                 .startTime(meetingRequestDTO.getStartTime())
