@@ -1,10 +1,11 @@
-package com.shaibal.meetings.security.service;
+package com.shaibal.meetings.security.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,11 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "582f5f7e494e484e49765c273737445a7d515f4941516d3b3d51746329";
-    private static final Integer EXPIRATION_TIME = 1000 * 60; // 1 hour
+    @Value("${configuration.secretKey}")
+    private String SECRET_KEY;
+
+    @Value("${configuration.expirationTime}")
+    private Integer EXPIRATION_TIME;
 
     public String extractUserEmail(String token) {
         return extractClaim(token, Claims::getSubject);

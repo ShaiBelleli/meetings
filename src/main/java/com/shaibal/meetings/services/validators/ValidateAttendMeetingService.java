@@ -1,9 +1,9 @@
 package com.shaibal.meetings.services.validators;
 
 import com.shaibal.meetings.constants.ErrorMessagesConstants;
-import com.shaibal.meetings.exceptions.MaximumNumberOfPeopleReachedException;
-import com.shaibal.meetings.exceptions.MeetingDateExpiredException;
-import com.shaibal.meetings.exceptions.MeetingStartDatePassedException;
+import com.shaibal.meetings.error_handling.MaximumNumberOfPeopleReachedException;
+import com.shaibal.meetings.error_handling.MeetingDateExpiredException;
+import com.shaibal.meetings.error_handling.MeetingStartDatePassedException;
 import com.shaibal.meetings.models.MeetingDM;
 import org.springframework.stereotype.Component;
 

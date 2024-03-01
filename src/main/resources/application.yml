@@ -1,0 +1,34 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: update
+      show-sql: true
+    database: postgresql
+  datasource:
+    url: jdbc:postgresql://localhost:5432/meetings
+    username: postgres
+    password: Ss0542659639
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  level:
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.SQL: DEBUG
+
+configuration:
+  regex:
+    email: "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"
+    password: "^(?=.*[a-z])(?=.*[A-Z]).{8,14}$"
+    instagramUrl: >-
+      (http(s?)://)?(?:www.)?(?:instagram|instagr).([a-z])+/(\w*)?/?
+  
+  
+
+  # Other constants
+  secretKey: "582f5f7e494e484e49765c273737445a7d515f4941516d3b3d51746329"
+  expirationTime: 3600000 # 1 hour in milliseconds
+
+
+

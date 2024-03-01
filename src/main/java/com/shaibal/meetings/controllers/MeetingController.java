@@ -30,8 +30,8 @@ public class MeetingController {
     }
 
     @GetMapping("/health")
-    public String health() {
-        return "OK";
+    public ResponseEntity<String> health() {
+        return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 
     @GetMapping("/meetings")

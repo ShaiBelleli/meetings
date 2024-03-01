@@ -16,6 +16,7 @@ public class ValidateDeleteMeetingByIdStep implements IStep {
     @Override
     public void execute(Context context) throws Exception {
         String meetingId = (String) context.getValue(ContextConstants.MEETING_ID);
+
         validateDeleteMeetingByIdService.validate(meetingId);
     }
 }

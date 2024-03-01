@@ -1,4 +1,4 @@
-package com.shaibal.meetings.exceptions;
+package com.shaibal.meetings.error_handling;
 
 import lombok.Getter;
 

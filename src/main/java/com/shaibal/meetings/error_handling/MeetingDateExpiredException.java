@@ -1,7 +1,6 @@
-package com.shaibal.meetings.exceptions;
+package com.shaibal.meetings.error_handling;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 public class MeetingDateExpiredException extends RuntimeException {

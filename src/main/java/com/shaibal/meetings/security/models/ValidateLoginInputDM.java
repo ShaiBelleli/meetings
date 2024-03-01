@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
-@Data
-@AllArgsConstructor
+@Component
 @NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Builder
-public class AuthenticationRequest {
+public class ValidateLoginInputDM {
     private String email;
     private String password;
 }

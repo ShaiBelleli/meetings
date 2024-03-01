@@ -1,9 +1,10 @@
 package com.shaibal.meetings.security.controller;
 
-import com.shaibal.meetings.security.models.AuthenticationRequest;
-import com.shaibal.meetings.security.models.AuthenticationResponse;
-import com.shaibal.meetings.security.models.RegisterRequest;
-import com.shaibal.meetings.security.service.AuthenticationService;
+import com.shaibal.meetings.security.application_service.LoginUserApplicationService;
+import com.shaibal.meetings.security.application_service.RegisterUserApplicationService;
+import com.shaibal.meetings.security.models.LoginRequestDTO;
+import com.shaibal.meetings.security.models.AuthenticationResponseDTO;
+import com.shaibal.meetings.security.models.RegisterRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/auth")
 public class AuthenticationController {
 
-    private final AuthenticationService authenticationService;
+    private final RegisterUserApplicationService registerUserApplicationService;
+    private final LoginUserApplicationService loginUserApplicationService;
+
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
-        return new ResponseEntity<>(authenticationService.register(request), HttpStatus.OK);
+    public ResponseEntity<AuthenticationResponseDTO> register(@RequestBody RegisterRequestDTO request) throws Exception {
+        return new ResponseEntity<>(registerUserApplicationService.register(request), HttpStatus.OK);
     }
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
-        return new ResponseEntity<>(authenticationService.authenticate(request), HttpStatus.OK);
+    @PostMapping("/login")
+    public ResponseEntity<AuthenticationResponseDTO> login(@RequestBody LoginRequestDTO request) throws Exception {
+        return new ResponseEntity<>(loginUserApplicationService.login(request), HttpStatus.OK);
     }
 }
