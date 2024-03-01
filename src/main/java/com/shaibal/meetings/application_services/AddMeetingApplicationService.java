@@ -32,10 +32,13 @@ public class AddMeetingApplicationService {
         return (MeetingResponseDTO) context.getValue(ResponseConstants.ADD_MEETING_RESPONSE);
     }
 
-    public Context initContext(MeetingRequestDTO meetingRequestDTO, String jwtToken) {
+    public Context initContext(MeetingRequestDTO meetingRequestDTO, String authHeader) {
         Context context = new Context();
 
         context.setValue(ContextConstants.MEETING_REQUEST_DTO, meetingRequestDTO);
+
+        String jwtToken = authHeader.substring(7);
+
         context.setValue(ContextConstants.JWT_TOKEN, jwtToken);
 
         return context;
