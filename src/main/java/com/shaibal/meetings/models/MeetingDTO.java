@@ -4,6 +4,8 @@ import lombok.*;
 import org.springframework.lang.NonNull;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Builder
 @Getter
@@ -16,6 +18,7 @@ public class MeetingDTO {
     private String title;
     private Integer numberOfPeopleLimit;
     private Integer currentNumOfAttendees;
+    private Set<String> attendees;
     @NonNull
     private LocalDateTime startTime;
     private LocalDateTime endTime;

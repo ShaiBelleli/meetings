@@ -48,8 +48,8 @@ public class MeetingController {
     @PostMapping()
     public ResponseEntity<MeetingResponseDTO> add(
             @RequestBody MeetingRequestDTO meetingRequestDTO,
-            @RequestHeader(value = HttpHeaders.AUTHORIZATION) String jwtToken) throws Exception {
-        return new ResponseEntity<>(addMeetingApplicationService.addMeeting(meetingRequestDTO, jwtToken), HttpStatus.OK);
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION) String authHeader) throws Exception {
+        return new ResponseEntity<>(addMeetingApplicationService.addMeeting(meetingRequestDTO, authHeader), HttpStatus.OK);
     }
 
     @DeleteMapping()
@@ -58,7 +58,8 @@ public class MeetingController {
     }
 
     @PutMapping()
-    public ResponseEntity<String> attendMeeting(@RequestParam String meetingId) throws Exception {
-        return new ResponseEntity<>(attendMeetingApplicationService.attendMeeting(meetingId), HttpStatus.OK);
+    public ResponseEntity<String> attendMeeting(@RequestParam String meetingId,
+                                                @RequestHeader(value = HttpHeaders.AUTHORIZATION) String authHeader) throws Exception {
+        return new ResponseEntity<>(attendMeetingApplicationService.attendMeeting(meetingId, authHeader), HttpStatus.OK);
     }
 }

@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class RegisterUserStep implements IStep {
@@ -40,7 +42,7 @@ public class RegisterUserStep implements IStep {
                 .displayName(request.getDisplayName())
                 .instagramUrl(request.getInstagramUrl())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.GUEST)
+                .roles(List.of(Role.GUEST))
                 .build();
     }
 }

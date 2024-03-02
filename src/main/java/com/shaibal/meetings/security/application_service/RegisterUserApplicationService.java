@@ -5,7 +5,7 @@ import com.shaibal.meetings.security.config.SecurityContextConstants;
 import com.shaibal.meetings.security.models.AuthenticationResponseDTO;
 import com.shaibal.meetings.security.models.RegisterRequestDTO;
 import com.shaibal.meetings.security.steps.RegisterUserStep;
-import com.shaibal.meetings.security.steps.SaveUserToDbStep;
+import com.shaibal.meetings.security.steps.PersistUserStep;
 import com.shaibal.meetings.security.steps.validators.ValidateRegisterInputStep;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,14 +16,14 @@ public class RegisterUserApplicationService {
 
     private final ValidateRegisterInputStep validateInputStep;
     private final RegisterUserStep registerUserStep;
-    private final SaveUserToDbStep saveUserToDbStep;
+    private final PersistUserStep persistUserStep;
 
     public AuthenticationResponseDTO register(RegisterRequestDTO request) throws Exception {
         SecurityContext context = initContext(request);
 
         validateInputStep.execute(context);
         registerUserStep.execute(context);
-        saveUserToDbStep.execute(context);
+        persistUserStep.execute(context);
 
         return (AuthenticationResponseDTO) context.getValue(SecurityContextConstants.REGISTER_RESPONSE_DTO);
     }

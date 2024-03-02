@@ -17,6 +17,7 @@ public class EnrichMeetingWithUserDetailsStep implements IStep {
     private final UserRepository userRepository;
     private final JwtService jwtService;
     private final MeetingRequestDTOToMeetingDTOMapper meetingRequestDTOToMeetingDTOMapper;
+
     @Override
     public void execute(Context context) throws Exception {
         String jwtToken = (String) context.getValue(ContextConstants.JWT_TOKEN);

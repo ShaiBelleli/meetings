@@ -5,6 +5,7 @@ import com.shaibal.meetings.error_handling.MaximumNumberOfPeopleReachedException
 import com.shaibal.meetings.error_handling.MeetingDateExpiredException;
 import com.shaibal.meetings.error_handling.MeetingStartDatePassedException;
 import com.shaibal.meetings.models.MeetingDM;
+import com.shaibal.meetings.models.ValidateAttendMeetingInputDM;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -13,21 +14,20 @@ import java.util.NoSuchElementException;
 @Component
 public class ValidateAttendMeetingService {
 
-    public void validate(MeetingDM meetingDM) throws NoSuchElementException {
-        String meetingId = meetingDM.getId();
-        LocalDateTime meetingStartTime = meetingDM.getStartTime();
-        LocalDateTime meetingEndTime = meetingDM.getEndTime();
-        Boolean isAllowingAttendanceAfterStartTime = meetingDM.getIsAllowingAttendanceAfterStartTime();
-        Integer numberOfPeopleLimit = meetingDM.getNumberOfPeopleLimit();
-        Integer currentNumOfAttendees = meetingDM.getCurrentNumOfAttendees();
-        Integer minAge = meetingDM.getMinAge();
-        Integer maxAge = meetingDM.getMaxAge();
-        // Integer userAge = userDetails.getAge();
+    public void validate(ValidateAttendMeetingInputDM validateAttendMeetingInputDM) throws NoSuchElementException {
+        LocalDateTime meetingStartTime = validateAttendMeetingInputDM.getMeetingStartTime();
+        LocalDateTime meetingEndTime = validateAttendMeetingInputDM.getMeetingEndTime();
+        Boolean isAllowingAttendanceAfterStartTime = validateAttendMeetingInputDM.getIsAllowingAttendanceAfterStartTime();
+        Integer numberOfPeopleLimit = validateAttendMeetingInputDM.getNumberOfPeopleLimit();
+        Integer currentNumOfAttendees = validateAttendMeetingInputDM.getCurrentNumOfAttendees();
+        Integer minAge = validateAttendMeetingInputDM.getMinAge();
+        Integer maxAge = validateAttendMeetingInputDM.getMaxAge();
+        Integer userAge = validateAttendMeetingInputDM.getUserAge();
 
         validateMeetingDateNotExpired(meetingEndTime);
         validateIsAllowingAttendanceAfterStartTime(meetingStartTime, isAllowingAttendanceAfterStartTime);
         validateNumberOfPeople(currentNumOfAttendees, numberOfPeopleLimit);
-        //validateAge(/*userAge, */minAge, maxAge);
+        validateAge(userAge, minAge, maxAge);
     }
 
 
@@ -49,5 +49,9 @@ public class ValidateAttendMeetingService {
         if (currentNumOfAttendees >= numberOfPeopleLimit) {
             throw new MaximumNumberOfPeopleReachedException(ErrorMessagesConstants.MAXIMUM_NUMBER_OF_PEOPLE_REACHED_EXCEPTION_MSG);
         }
+    }
+
+    private void validateAge(Integer age, Integer minAge, Integer maxAge) {
+
     }
 }

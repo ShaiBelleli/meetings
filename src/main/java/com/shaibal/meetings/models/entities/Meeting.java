@@ -1,12 +1,11 @@
 package com.shaibal.meetings.models.entities;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import com.shaibal.meetings.models.Location;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.shaibal.meetings.security.users.User;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.lang.NonNull;
@@ -33,6 +32,13 @@ public class Meeting {
     private LocalDateTime endTime;
     private Boolean isAllowingAttendanceAfterStartTime;
     private Integer currentNumOfAttendees;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "meeting_attendees",
+//            joinColumns = @JoinColumn(name = "meeting_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id")
+//    )
+//    private Set<User> attendees;
     private Integer minAge;
     private Integer maxAge;
     @NonNull

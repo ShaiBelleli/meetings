@@ -12,4 +12,6 @@ public class ValidateRegisterInputDM {
     private String email;
     private String password;
     private String instagramUrl;
+    private Integer age;
+    private String displayName;
 }

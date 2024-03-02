@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class SaveUserToDbService {
+public class PersistUserService {
     private final UserRepository userRepository;
     public void save(User user) {
         userRepository.save(user);

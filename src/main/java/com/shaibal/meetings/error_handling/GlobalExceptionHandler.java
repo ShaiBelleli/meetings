@@ -1,5 +1,6 @@
 package com.shaibal.meetings.error_handling;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
