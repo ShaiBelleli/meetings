@@ -4,6 +4,8 @@ import com.shaibal.meetings.models.MeetingDTO;
 import com.shaibal.meetings.models.entities.Meeting;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+
 @Component
 public class MeetingDTOToMeetingMapper implements IMapper<Meeting, MeetingDTO> {
     @Override
@@ -21,6 +23,8 @@ public class MeetingDTOToMeetingMapper implements IMapper<Meeting, MeetingDTO> {
                 .purpose(meetingDTO.getPurpose())
                 .freeText(meetingDTO.getFreeText())
                 .currentNumOfAttendees(1)
+                .attendees(new HashSet<>() {{ add(meetingDTO.getOrganizer()); }})
+                .pendingAttendees(new HashSet<>())
                 .build();
     }
 }

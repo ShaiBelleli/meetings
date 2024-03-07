@@ -6,4 +6,7 @@ public class ContextConstants {
     public static final String JWT_TOKEN = "jwtToken";
     public static final String MEETING_DTO_AFTER_USER_DETAILS_ENRICHMENT = "meetingDTOAfterUserDetailsEnrichment";
     public static final String VALIDATE_ATTEND_MEETING_INPUT_DM = "validateAttendMeetingInputDM";
+    public static final String ATTEND_MEETING_SERVICE_INPUT_DM = "attendMeetingServiceInputDM";
+    public static final String MEETING_DTO = "meetingDTO";
+    public static final String MEETING_DTO_AFTER_ATTEND_UPDATE = "meetingDTOAfterAttendUpdate";
 }

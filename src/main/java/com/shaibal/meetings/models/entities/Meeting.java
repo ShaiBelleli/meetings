@@ -23,7 +23,7 @@ public class Meeting {
     @GeneratedValue(generator = "custom-id")
     @GenericGenerator(name = "custom-id", strategy = "com.shaibal.meetings.util.CustomIdGenerator")
     private String id;
-    private String organizer; // Should get from User Details
+    private String organizer;
     @NonNull
     private String title;
     private Integer numberOfPeopleLimit;
@@ -32,13 +32,15 @@ public class Meeting {
     private LocalDateTime endTime;
     private Boolean isAllowingAttendanceAfterStartTime;
     private Integer currentNumOfAttendees;
-//    @ManyToMany
-//    @JoinTable(
-//            name = "meeting_attendees",
-//            joinColumns = @JoinColumn(name = "meeting_id"),
-//            inverseJoinColumns = @JoinColumn(name = "user_id")
-//    )
-//    private Set<User> attendees;
+    @ElementCollection
+    @CollectionTable(name = "meetings_users", joinColumns = @JoinColumn(name = "meeting_id"))
+    @Column(name = "attendee_display_name")
+    private Set<String> attendees;
+    @ElementCollection
+    @CollectionTable(name = "meetings_users", joinColumns = @JoinColumn(name = "meeting_id"))
+    @Column(name = "pending_attendee_display_name")
+    private Set<String> pendingAttendees;
+    private Boolean isPendingRequired;
     private Integer minAge;
     private Integer maxAge;
     @NonNull

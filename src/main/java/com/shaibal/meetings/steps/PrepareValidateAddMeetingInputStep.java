@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class EnrichMeetingWithUserDetailsStep implements IStep {
+public class PrepareValidateAddMeetingInputStep implements IStep {
     private final UserRepository userRepository;
     private final JwtService jwtService;
     private final MeetingRequestDTOToMeetingDTOMapper meetingRequestDTOToMeetingDTOMapper;

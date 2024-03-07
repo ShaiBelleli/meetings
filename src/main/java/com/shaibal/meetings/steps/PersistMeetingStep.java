@@ -4,7 +4,6 @@ import com.shaibal.meetings.Context;
 import com.shaibal.meetings.constants.ResponseConstants;
 import com.shaibal.meetings.constants.ContextConstants;
 import com.shaibal.meetings.models.MeetingDTO;
-import com.shaibal.meetings.models.MeetingRequestDTO;
 import com.shaibal.meetings.models.MeetingResponseDTO;
 import com.shaibal.meetings.services.AddMeetingService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class AddMeetingToDbStep implements IStep {
+public class PersistMeetingStep implements IStep {
 
     private final AddMeetingService addMeetingService;
 

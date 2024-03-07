@@ -20,7 +20,7 @@ public class MeetingRequestDTO {
     private Location location;
     private Integer minAge;
     private Integer maxAge;
-    private String arrivalInstructions;
+    private Boolean isPendingRequired;
     // We will be able to filter by purpose
     private String purpose;
     private String freeText;

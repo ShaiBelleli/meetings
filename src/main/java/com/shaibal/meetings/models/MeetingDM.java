@@ -14,6 +14,7 @@ public class MeetingDM {
     private String title;
     private Integer currentNumOfAttendees;
     private Set<String> attendees;
+    private Set<String> pendingAttendees;
     private Integer numberOfPeopleLimit;
     private LocalDateTime startTime;
     private LocalDateTime endTime;

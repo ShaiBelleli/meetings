@@ -1,9 +1,11 @@
-package com.shaibal.meetings.models;
+package com.shaibal.meetings.models.input;
 
+import com.shaibal.meetings.security.users.User;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Component
 @Data
@@ -16,4 +18,7 @@ public class ValidateAttendMeetingInputDM {
     private Integer minAge;
     private Integer maxAge;
     private Integer userAge;
+    private String userDisplayName;
+    private Set<String> attendees;
+    private Set<String> pendingAttendees;
 }

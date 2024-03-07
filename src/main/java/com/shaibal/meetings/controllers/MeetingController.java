@@ -52,14 +52,14 @@ public class MeetingController {
         return new ResponseEntity<>(addMeetingApplicationService.addMeeting(meetingRequestDTO, authHeader), HttpStatus.OK);
     }
 
-    @DeleteMapping()
-    public ResponseEntity<String> deleteMeetingById(@NonNull @RequestParam String meetingId) throws Exception {
-        return new ResponseEntity<>(deleteMeetingByIdApplicationService.deleteMeeting(meetingId), HttpStatus.OK);
+    @DeleteMapping("/meetings/{id}")
+    public ResponseEntity<String> deleteMeetingById(@NonNull @PathVariable String id) throws Exception {
+        return new ResponseEntity<>(deleteMeetingByIdApplicationService.deleteMeeting(id), HttpStatus.OK);
     }
 
-    @PutMapping()
-    public ResponseEntity<String> attendMeeting(@RequestParam String meetingId,
+    @PutMapping("/meetings/{id}")
+    public ResponseEntity<String> attendMeeting(@PathVariable String id,
                                                 @RequestHeader(value = HttpHeaders.AUTHORIZATION) String authHeader) throws Exception {
-        return new ResponseEntity<>(attendMeetingApplicationService.attendMeeting(meetingId, authHeader), HttpStatus.OK);
+        return new ResponseEntity<>(attendMeetingApplicationService.attendMeeting(id, authHeader), HttpStatus.OK);
     }
 }

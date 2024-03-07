@@ -1,6 +1,6 @@
 package com.shaibal.meetings.mappers;
 
-import com.shaibal.meetings.models.ValidateAttendMeetingInputDM;
+import com.shaibal.meetings.models.input.ValidateAttendMeetingInputDM;
 import com.shaibal.meetings.models.MeetingResponseDTO;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,8 @@ public class MeetingResponseDTOToAttendMeetingValidationDMMapper implements IMap
         validateAttendMeetingInputDM.setMinAge(src.getMinAge());
         validateAttendMeetingInputDM.setMaxAge(src.getMaxAge());
         validateAttendMeetingInputDM.setCurrentNumOfAttendees(src.getCurrentNumOfAttendees());
-        validateAttendMeetingInputDM.setIsAllowingAttendanceAfterStartTime(src.getIsAllowingAttendanceAfterStartTime());
+        validateAttendMeetingInputDM.setAttendees(src.getAttendees());
+        validateAttendMeetingInputDM.setPendingAttendees(src.getPendingAttendees());
 
         return validateAttendMeetingInputDM;
     }

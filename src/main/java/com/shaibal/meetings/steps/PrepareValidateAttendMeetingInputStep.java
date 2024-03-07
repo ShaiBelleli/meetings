@@ -3,7 +3,7 @@ package com.shaibal.meetings.steps;
 import com.shaibal.meetings.Context;
 import com.shaibal.meetings.constants.ContextConstants;
 import com.shaibal.meetings.mappers.MeetingResponseDTOToAttendMeetingValidationDMMapper;
-import com.shaibal.meetings.models.ValidateAttendMeetingInputDM;
+import com.shaibal.meetings.models.input.ValidateAttendMeetingInputDM;
 import com.shaibal.meetings.models.MeetingResponseDTO;
 import com.shaibal.meetings.security.repository.UserRepository;
 import com.shaibal.meetings.security.services.JwtService;
@@ -37,5 +37,7 @@ public class PrepareValidateAttendMeetingInputStep implements IStep {
         validateAttendMeetingInputDM.setUserAge(user.getAge());
 
         context.setValue(ContextConstants.VALIDATE_ATTEND_MEETING_INPUT_DM, validateAttendMeetingInputDM);
+
+        context.setValue(ContextConstants.MEETING_DTO, meetingResponseDTO);
     }
 }

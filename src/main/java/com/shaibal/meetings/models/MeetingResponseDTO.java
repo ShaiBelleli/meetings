@@ -1,5 +1,6 @@
 package com.shaibal.meetings.models;
 
+import com.shaibal.meetings.security.users.User;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -19,6 +20,8 @@ public class MeetingResponseDTO {
     private Boolean isAllowingAttendanceAfterStartTime;
     private Integer currentNumOfAttendees;
     private Set<String> attendees;
+    private Set<String> pendingAttendees;
+    private Boolean isPendingRequired;
     private Integer minAge;
     private Integer maxAge;
     private Location location;

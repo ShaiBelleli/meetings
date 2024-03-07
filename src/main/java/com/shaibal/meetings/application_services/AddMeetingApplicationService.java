@@ -5,9 +5,10 @@ import com.shaibal.meetings.constants.ResponseConstants;
 import com.shaibal.meetings.constants.ContextConstants;
 import com.shaibal.meetings.models.MeetingRequestDTO;
 import com.shaibal.meetings.models.MeetingResponseDTO;
-import com.shaibal.meetings.steps.EnrichMeetingWithUserDetailsStep;
+//import com.shaibal.meetings.steps.EnrichMeetingWithUserDetailsStep;
+import com.shaibal.meetings.steps.PrepareValidateAddMeetingInputStep;
 import com.shaibal.meetings.steps.notifications.NotifyMeetingAddedStep;
-import com.shaibal.meetings.steps.AddMeetingToDbStep;
+import com.shaibal.meetings.steps.PersistMeetingStep;
 import com.shaibal.meetings.steps.validators.ValidateAddMeetingStep;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,17 +17,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class AddMeetingApplicationService {
 
+    private final PrepareValidateAddMeetingInputStep prepareValidateAddMeetingInputStep;
     private final ValidateAddMeetingStep validateAddMeetingStep;
-    private final EnrichMeetingWithUserDetailsStep enrichMeetingWithUserDetailsStep;
-    private final AddMeetingToDbStep addMeetingToDbStep;
+    //private final EnrichMeetingWithUserDetailsStep enrichMeetingWithUserDetailsStep;
+    private final PersistMeetingStep persistMeetingStep;
     private final NotifyMeetingAddedStep notifyMeetingAddedStep;
 
     public MeetingResponseDTO addMeeting(MeetingRequestDTO meetingRequestDTO, String jwtToken) throws Exception {
         Context context = initContext(meetingRequestDTO, jwtToken);
 
+        prepareValidateAddMeetingInputStep.execute(context);
         validateAddMeetingStep.execute(context);
-        enrichMeetingWithUserDetailsStep.execute(context);
-        addMeetingToDbStep.execute(context);
+        persistMeetingStep.execute(context);
         notifyMeetingAddedStep.execute(context);
 
         return (MeetingResponseDTO) context.getValue(ResponseConstants.ADD_MEETING_RESPONSE);

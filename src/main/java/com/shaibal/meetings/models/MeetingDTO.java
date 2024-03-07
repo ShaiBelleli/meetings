@@ -19,6 +19,7 @@ public class MeetingDTO {
     private Integer numberOfPeopleLimit;
     private Integer currentNumOfAttendees;
     private Set<String> attendees;
+    private Set<String> pendingAttendees;
     @NonNull
     private LocalDateTime startTime;
     private LocalDateTime endTime;
