@@ -1,0 +1,25 @@
+package com.shaibal.meetings.services;
+
+import com.shaibal.meetings.mappers.MeetingAttendanceRequestEntityToMeetingAttendanceRequestResponseDTOMapper;
+import com.shaibal.meetings.mappers.MeetingAttendanceRequestInputDMToMeetingAttendanceRequestMapper;
+import com.shaibal.meetings.models.MeetingAttendanceRequestResponseDTO;
+import com.shaibal.meetings.models.entities.MeetingAttendanceRequest;
+import com.shaibal.meetings.models.input.CreateMeetingAttendanceRequestInputDM;
+import com.shaibal.meetings.repositories.MeetingAttendanceRequestRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class AddMeetingAttendanceRequestService {
+    private final MeetingAttendanceRequestInputDMToMeetingAttendanceRequestMapper meetingAttendanceRequestInputDMToMeetingAttendanceRequestMapper;
+    private final MeetingAttendanceRequestRepository meetingAttendanceRequestRepository;
+    private final MeetingAttendanceRequestEntityToMeetingAttendanceRequestResponseDTOMapper meetingAttendanceRequestEntityToMeetingAttendanceRequestResponseDTOMapper;
+    public MeetingAttendanceRequestResponseDTO add(CreateMeetingAttendanceRequestInputDM createMeetingAttendanceRequestInputDM) {
+        MeetingAttendanceRequest meetingAttendanceRequestEntity = meetingAttendanceRequestInputDMToMeetingAttendanceRequestMapper.map(createMeetingAttendanceRequestInputDM);
+
+        meetingAttendanceRequestRepository.save(meetingAttendanceRequestEntity);
+
+        return meetingAttendanceRequestEntityToMeetingAttendanceRequestResponseDTOMapper.map(meetingAttendanceRequestEntity);
+    }
+}

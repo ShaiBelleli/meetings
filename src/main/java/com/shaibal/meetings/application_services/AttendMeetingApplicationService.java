@@ -3,10 +3,11 @@ package com.shaibal.meetings.application_services;
 import com.shaibal.meetings.Context;
 import com.shaibal.meetings.constants.ResponseConstants;
 import com.shaibal.meetings.constants.ContextConstants;
-import com.shaibal.meetings.steps.AttendMeetingStep;
-import com.shaibal.meetings.steps.PersistAttendMeetingStep;
-import com.shaibal.meetings.steps.PrepareAttendMeetingInputStep;
-import com.shaibal.meetings.steps.PrepareValidateAttendMeetingInputStep;
+import com.shaibal.meetings.models.input.CreateMeetingAttendanceRequestInputDM;
+import com.shaibal.meetings.models.input.ValidateAttendMeetingInputDM;
+import com.shaibal.meetings.security.users.User;
+import com.shaibal.meetings.services.GetMeetingService;
+import com.shaibal.meetings.steps.*;
 import com.shaibal.meetings.steps.notifications.NotifyMeetingAttendedStep;
 import com.shaibal.meetings.steps.validators.ValidateAttendMeetingStep;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,9 @@ public class AttendMeetingApplicationService {
     private final AttendMeetingStep attendMeetingStep;
     private final PersistAttendMeetingStep persistAttendMeetingStep;
     private final NotifyMeetingAttendedStep notifyMeetingAttendedStep;
+    private final PrepareCreateMeetingAttendanceRequestInputStep prepareCreateMeetingAttendanceRequestInputStep;
+    private final CreateMeetingAttendanceRequestApplicationService createMeetingAttendanceRequestApplicationService;
+    private final GetMeetingService getMeetingService;
 
 
     public String attendMeeting(String meetingId, String authHeader) throws Exception {
@@ -29,6 +33,12 @@ public class AttendMeetingApplicationService {
 
         prepareValidateAttendMeetingInputStep.execute(context);
         validateAttendMeetingStep.execute(context);
+        if (getMeetingService.getMeeting(meetingId).getIsPendingRequired()) {
+            prepareCreateMeetingAttendanceRequestInputStep.execute(context);
+            createMeetingAttendanceRequestApplicationService.createMeetingAttendanceRequest(
+                    (CreateMeetingAttendanceRequestInputDM) context.getValue(ContextConstants.CREATE_MEETING_ATTENDANCE_REQUEST_INPUT));
+            return (String) context.getValue(ResponseConstants.PENDING_MEETING_RESPONSE);
+        }
         prepareAttendMeetingInputStep.execute(context);
         attendMeetingStep.execute(context);
         persistAttendMeetingStep.execute(context);
@@ -39,11 +49,9 @@ public class AttendMeetingApplicationService {
 
     public Context initContext(String meetingId, String authHeader) {
         Context context = new Context();
-
-        context.setValue(ContextConstants.MEETING_ID, meetingId);
-
         String jwtToken = authHeader.substring(7);
 
+        context.setValue(ContextConstants.MEETING_ID, meetingId);
         context.setValue(ContextConstants.JWT_TOKEN, jwtToken);
 
         return context;

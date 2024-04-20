@@ -23,15 +23,16 @@ public class AttendMeetingStep implements IStep {
         MeetingResponseDTO meetingDTO = (MeetingResponseDTO) context.getValue(ContextConstants.MEETING_DTO);
         AttendMeetingServiceInputDM attendMeetingServiceInputDM = (AttendMeetingServiceInputDM) context.getValue(ContextConstants.ATTEND_MEETING_SERVICE_INPUT_DM);
 
-        Set<String> attendeesToAdd = attendMeetingService.attendMeeting(attendMeetingServiceInputDM);
+        attendMeetingService.attendMeeting(attendMeetingServiceInputDM, meetingDTO);
 
         if (Boolean.TRUE.equals(attendMeetingServiceInputDM.getIsPendingRequired())) {
-            meetingDTO.setPendingAttendees(attendeesToAdd);
+            // AttendPendingApprovalFlow
+            // Create notification for organizer - a new user wants to attend meeting X
             context.setValue(ResponseConstants.ATTEND_MEETING_RESPONSE, BusinessConstants.ADDED_TO_PENDING_ATTENDEES_MSG);
         }
 
         else {
-            meetingDTO.setAttendees(attendeesToAdd);
+            // Create notification for organizer - a new user attended meeting X
             context.setValue(ResponseConstants.ATTEND_MEETING_RESPONSE, BusinessConstants.ADDED_TO_ATTENDEES_MSG);
         }
 

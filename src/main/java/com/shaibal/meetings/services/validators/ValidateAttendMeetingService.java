@@ -25,22 +25,22 @@ public class ValidateAttendMeetingService {
         Integer maxAge = validateAttendMeetingInputDM.getMaxAge();
         Integer userAge = validateAttendMeetingInputDM.getUserAge();
         Set<String> attendees = validateAttendMeetingInputDM.getAttendees();
-        Set<String> pendingAttendees = validateAttendMeetingInputDM.getPendingAttendees();
+        //Set<String> pendingAttendees = validateAttendMeetingInputDM.getPendingAttendees();
         String userDisplayName = validateAttendMeetingInputDM.getUserDisplayName();
 
         validateMeetingDateNotExpired(meetingEndTime);
         validateIsAllowingAttendanceAfterStartTime(meetingStartTime, isAllowingAttendanceAfterStartTime);
         validateNumberOfPeople(currentNumOfAttendees, numberOfPeopleLimit);
         validateAge(userAge, minAge, maxAge);
-        validateAttendees(attendees, userDisplayName);
-        validatePendingAttendees(pendingAttendees, userDisplayName);
+        validateNotAlreadyInListOfAttendees(attendees, userDisplayName);
+        //validateNotAlreadyInListOfPendingAttendees(pendingAttendees, userDisplayName);
     }
 
-    private void validatePendingAttendees(Set<String> pendingAttendees, String userDisplayName) throws BadRequestException {
-        validateUserIsNotAlreadyPendingAttendee(pendingAttendees, userDisplayName);
-    }
+//    private void validateNotAlreadyInListOfPendingAttendees(Set<String> pendingAttendees, String userDisplayName) throws BadRequestException {
+//        validateUserIsNotAlreadyPendingAttendee(pendingAttendees, userDisplayName);
+//    }
 
-    private void validateAttendees(Set<String> attendees, String userDisplayName) throws BadRequestException {
+    private void validateNotAlreadyInListOfAttendees(Set<String> attendees, String userDisplayName) throws BadRequestException {
         validateUserIsNotAlreadyAttendee(attendees, userDisplayName);
     }
 
@@ -50,11 +50,11 @@ public class ValidateAttendMeetingService {
         }
     }
 
-    private void validateUserIsNotAlreadyPendingAttendee(Set<String> pendingAttendees, String userDisplayName) throws BadRequestException {
-        if (pendingAttendees.contains(userDisplayName)) {
-            throw new BadRequestException("You have already asked to attend this meeting.");
-        }
-    }
+//    private void validateUserIsNotAlreadyPendingAttendee(Set<String> pendingAttendees, String userDisplayName) throws BadRequestException {
+//        if (pendingAttendees.contains(userDisplayName)) {
+//            throw new BadRequestException("You have already asked to attend this meeting.");
+//        }
+//    }
 
     private void validateMeetingDateNotExpired(LocalDateTime meetingEndTime) throws MeetingDateExpiredException {
         if (meetingEndTime == null) {

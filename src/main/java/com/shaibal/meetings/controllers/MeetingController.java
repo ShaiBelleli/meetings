@@ -62,4 +62,9 @@ public class MeetingController {
                                                 @RequestHeader(value = HttpHeaders.AUTHORIZATION) String authHeader) throws Exception {
         return new ResponseEntity<>(attendMeetingApplicationService.attendMeeting(id, authHeader), HttpStatus.OK);
     }
+
+//    @GetMapping()
+//    public ResponseEntity<List<PendingMeetingResponseDTO>> getPendingMeetings() {
+//
+//    }
 }

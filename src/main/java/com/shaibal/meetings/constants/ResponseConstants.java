@@ -6,4 +6,5 @@ public class ResponseConstants {
     public static final String ADD_MEETING_RESPONSE = "addMeetingResponse";
     public static final String GET_MEETING_RESPONSE = "getMeetingResponse";
     public static final String GET_ALL_MEETINGS_RESPONSE = "getAllMeetingsResponse";
+    public static final String PENDING_MEETING_RESPONSE = "pendingMeetingResponse";
 }

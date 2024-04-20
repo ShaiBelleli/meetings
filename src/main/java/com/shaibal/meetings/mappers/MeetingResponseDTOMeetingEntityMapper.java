@@ -11,7 +11,6 @@ public interface MeetingResponseDTOMeetingEntityMapper {
 
     MeetingResponseDTOMeetingEntityMapper INSTANCE = Mappers.getMapper(MeetingResponseDTOMeetingEntityMapper.class);
 
-    @Mapping(target = "id", ignore = true)
     Meeting toMeeting(MeetingResponseDTO meetingResponseDTO);
 
     MeetingResponseDTO toMeetingResponseDTO(Meeting meeting);

@@ -27,17 +27,16 @@ public class PrepareValidateAttendMeetingInputStep implements IStep {
         String meetingId = (String) context.getValue(ContextConstants.MEETING_ID);
 
         MeetingResponseDTO meetingResponseDTO = getMeetingService.getMeeting(meetingId);
-
         ValidateAttendMeetingInputDM validateAttendMeetingInputDM = meetingResponseDTOToAttendMeetingValidationDMMapper.map(meetingResponseDTO);
-
         String userEmail = jwtService.extractUserEmail(jwtToken);
-
         User user = userRepository.findByEmail(userEmail);
 
+        //This should not be here, should be in a different UserDetails..
         validateAttendMeetingInputDM.setUserAge(user.getAge());
+        validateAttendMeetingInputDM.setUserDisplayName(user.getDisplayName());
 
         context.setValue(ContextConstants.VALIDATE_ATTEND_MEETING_INPUT_DM, validateAttendMeetingInputDM);
-
         context.setValue(ContextConstants.MEETING_DTO, meetingResponseDTO);
+        context.setValue(ContextConstants.USER_DETAILS, user);
     }
 }

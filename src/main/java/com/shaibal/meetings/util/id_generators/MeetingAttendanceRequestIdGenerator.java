@@ -1,4 +1,4 @@
-package com.shaibal.meetings.util;
+package com.shaibal.meetings.util.id_generators;
 
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
@@ -10,9 +10,9 @@ import java.util.Random;
 import java.util.Set;
 
 @Component
-public class CustomIdGenerator implements IdentifierGenerator {
+public class MeetingAttendanceRequestIdGenerator implements IdentifierGenerator {
 
-    private static final String PREFIX = "Meeting_";
+    private static final String PREFIX = "MeetingAttendanceRequest_";
     private static final int MAX_RANDOM_ATTEMPTS = 1000;  // Adjust as needed
     private static final Set<String> usedIds = new HashSet<>();
 

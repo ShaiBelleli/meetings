@@ -1,5 +1,7 @@
 package com.shaibal.meetings.services;
 
+import com.shaibal.meetings.models.MeetingDTO;
+import com.shaibal.meetings.models.MeetingResponseDTO;
 import com.shaibal.meetings.models.input.AttendMeetingServiceInputDM;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,20 +11,15 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class AttendMeetingService {
-    public Set<String> attendMeeting(AttendMeetingServiceInputDM attendMeetingServiceInputDM) {
+    public void attendMeeting(AttendMeetingServiceInputDM attendMeetingServiceInputDM, MeetingResponseDTO meetingDTO) {
         String userDisplayName = attendMeetingServiceInputDM.getDisplayName();
-        Set<String> attendeesListToInsertAttendee;
 
         if (Boolean.TRUE.equals(attendMeetingServiceInputDM.getIsPendingRequired())) {
-            attendeesListToInsertAttendee = attendMeetingServiceInputDM.getPendingAttendees();
-
+            meetingDTO.getPendingAttendees().add(userDisplayName);
         }
         else {
-            attendeesListToInsertAttendee = attendMeetingServiceInputDM.getAttendees();
+            meetingDTO.getAttendees().add(userDisplayName);
+            meetingDTO.setCurrentNumOfAttendees(meetingDTO.getCurrentNumOfAttendees() + 1);
         }
-
-        attendeesListToInsertAttendee.add(userDisplayName);
-
-        return attendeesListToInsertAttendee;
     }
 }

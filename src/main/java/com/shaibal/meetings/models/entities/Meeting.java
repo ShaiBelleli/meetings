@@ -21,7 +21,7 @@ import org.springframework.lang.NonNull;
 public class Meeting {
     @Id
     @GeneratedValue(generator = "custom-id")
-    @GenericGenerator(name = "custom-id", strategy = "com.shaibal.meetings.util.CustomIdGenerator")
+    @GenericGenerator(name = "custom-id", strategy = "com.shaibal.meetings.util.id_generators.MeetingIdGenerator")
     private String id;
     private String organizer;
     @NonNull
