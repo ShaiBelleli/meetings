@@ -24,9 +24,7 @@ public class PrepareValidateAddMeetingInputStep implements IStep {
         MeetingRequestDTO meetingRequestDTO = (MeetingRequestDTO) context.getValue(ContextConstants.MEETING_REQUEST_DTO);
 
         String userEmail = jwtService.extractUserEmail(jwtToken);
-
         User user = userRepository.findByEmail(userEmail);
-
         MeetingDTO meetingDTO = meetingRequestDTOToMeetingDTOMapper.map(meetingRequestDTO);
 
         meetingDTO.setOrganizer(user.getDisplayName());

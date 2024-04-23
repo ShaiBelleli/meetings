@@ -33,7 +33,7 @@ public class AttendMeetingApplicationService {
 
         prepareValidateAttendMeetingInputStep.execute(context);
         validateAttendMeetingStep.execute(context);
-        if (getMeetingService.getMeeting(meetingId).getIsPendingRequired()) {
+        if (Boolean.TRUE.equals(getMeetingService.getMeeting(meetingId).getIsPendingRequired())) {
             prepareCreateMeetingAttendanceRequestInputStep.execute(context);
             createMeetingAttendanceRequestApplicationService.createMeetingAttendanceRequest(
                     (CreateMeetingAttendanceRequestInputDM) context.getValue(ContextConstants.CREATE_MEETING_ATTENDANCE_REQUEST_INPUT));

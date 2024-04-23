@@ -14,12 +14,7 @@ public class AttendMeetingService {
     public void attendMeeting(AttendMeetingServiceInputDM attendMeetingServiceInputDM, MeetingResponseDTO meetingDTO) {
         String userDisplayName = attendMeetingServiceInputDM.getDisplayName();
 
-        if (Boolean.TRUE.equals(attendMeetingServiceInputDM.getIsPendingRequired())) {
-            meetingDTO.getPendingAttendees().add(userDisplayName);
-        }
-        else {
-            meetingDTO.getAttendees().add(userDisplayName);
-            meetingDTO.setCurrentNumOfAttendees(meetingDTO.getCurrentNumOfAttendees() + 1);
-        }
+        meetingDTO.getAttendees().add(userDisplayName);
+        meetingDTO.setCurrentNumOfAttendees(meetingDTO.getCurrentNumOfAttendees() + 1);
     }
 }

@@ -19,7 +19,6 @@ public class AddMeetingApplicationService {
 
     private final PrepareValidateAddMeetingInputStep prepareValidateAddMeetingInputStep;
     private final ValidateAddMeetingStep validateAddMeetingStep;
-    //private final EnrichMeetingWithUserDetailsStep enrichMeetingWithUserDetailsStep;
     private final PersistMeetingStep persistMeetingStep;
     private final NotifyMeetingAddedStep notifyMeetingAddedStep;
 
@@ -36,11 +35,9 @@ public class AddMeetingApplicationService {
 
     public Context initContext(MeetingRequestDTO meetingRequestDTO, String authHeader) {
         Context context = new Context();
-
-        context.setValue(ContextConstants.MEETING_REQUEST_DTO, meetingRequestDTO);
-
         String jwtToken = authHeader.substring(7);
 
+        context.setValue(ContextConstants.MEETING_REQUEST_DTO, meetingRequestDTO);
         context.setValue(ContextConstants.JWT_TOKEN, jwtToken);
 
         return context;

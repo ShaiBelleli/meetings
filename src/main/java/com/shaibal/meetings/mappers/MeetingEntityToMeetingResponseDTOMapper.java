@@ -25,6 +25,7 @@ public class MeetingEntityToMeetingResponseDTOMapper implements IMapper<MeetingR
                 .attendees(entity.getAttendees())
                 .pendingAttendees(entity.getPendingAttendees())
                 .isPendingRequired(entity.getIsPendingRequired())
+                .currentNumOfAttendees(entity.getCurrentNumOfAttendees())
                 .build();
     }
 }
