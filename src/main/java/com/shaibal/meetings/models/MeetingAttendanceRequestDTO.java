@@ -16,5 +16,5 @@ public class MeetingAttendanceRequestDTO {
     private String userDisplayName;
     private Integer userAge;
     private String instagramUrl;
-    // private String gender;
+    private String gender;
 }

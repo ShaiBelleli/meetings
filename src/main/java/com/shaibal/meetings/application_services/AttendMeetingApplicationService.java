@@ -53,6 +53,8 @@ public class AttendMeetingApplicationService {
 
         context.setValue(ContextConstants.MEETING_ID, meetingId);
         context.setValue(ContextConstants.JWT_TOKEN, jwtToken);
+        context.setValue(ResponseConstants.ATTEND_MEETING_RESPONSE, "Attended meeting successfully.");
+        context.setValue(ResponseConstants.PENDING_MEETING_RESPONSE, "Your attendance request is being reviewed by the organizer.");
 
         return context;
     }

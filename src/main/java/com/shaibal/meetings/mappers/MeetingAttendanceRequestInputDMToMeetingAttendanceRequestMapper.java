@@ -1,5 +1,6 @@
 package com.shaibal.meetings.mappers;
 
+import com.shaibal.meetings.constants.BusinessConstants;
 import com.shaibal.meetings.models.entities.MeetingAttendanceRequest;
 import com.shaibal.meetings.models.input.CreateMeetingAttendanceRequestInputDM;
 import org.springframework.stereotype.Component;
@@ -9,10 +10,12 @@ public class MeetingAttendanceRequestInputDMToMeetingAttendanceRequestMapper imp
     @Override
     public MeetingAttendanceRequest map(CreateMeetingAttendanceRequestInputDM src) {
         return MeetingAttendanceRequest.builder()
-                .id(src.getMeetingId())
+                .meetingId(src.getMeetingId())
                 .instagramUrl(src.getInstagramUrl())
+                .gender(src.getGender())
                 .userDisplayName(src.getUserDisplayName())
                 .userAge(src.getUserAge())
+                .status(BusinessConstants.STATUS_SUBMITTED)
                 .build();
     }
 }

@@ -18,4 +18,5 @@ public class RegisterRequestDTO {
     private String password;
     private Integer age;
     private String freeText;
+    private String gender;
 }

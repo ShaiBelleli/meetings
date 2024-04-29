@@ -26,7 +26,7 @@ public class GetAllMeetingsApplicationService {
         return (List<MeetingResponseDTO>) context.getValue(ResponseConstants.GET_ALL_MEETINGS_RESPONSE);
     }
 
-    public Context initContext() {
+    private Context initContext() {
         Context context = new Context();
 
         return context;

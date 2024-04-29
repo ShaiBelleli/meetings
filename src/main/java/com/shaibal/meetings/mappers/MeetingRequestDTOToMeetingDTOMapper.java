@@ -21,6 +21,7 @@ public class MeetingRequestDTOToMeetingDTOMapper implements IMapper<MeetingDTO, 
                 .location(meetingRequestDTO.getLocation())
                 .purpose(meetingRequestDTO.getPurpose())
                 .freeText(meetingRequestDTO.getFreeText())
+                .isPendingRequired(meetingRequestDTO.getIsPendingRequired())
                 .build();
     }
 }

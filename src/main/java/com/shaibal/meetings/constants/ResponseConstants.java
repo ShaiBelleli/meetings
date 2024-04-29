@@ -7,4 +7,5 @@ public class ResponseConstants {
     public static final String GET_MEETING_RESPONSE = "getMeetingResponse";
     public static final String GET_ALL_MEETINGS_RESPONSE = "getAllMeetingsResponse";
     public static final String PENDING_MEETING_RESPONSE = "pendingMeetingResponse";
+    public static final String GET_ALL_MEETING_ATTENDANCE_REQUESTS_RESPONSE = "getAllMeetingAttendanceRequestsResponse";
 }

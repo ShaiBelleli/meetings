@@ -25,6 +25,9 @@ public class MeetingResponseDTOToMeetingDMMapper implements IMapper<MeetingDM, M
         result.setLocation(meetingResponseDTO.getLocation());
         result.setPurpose(meetingResponseDTO.getPurpose());
         result.setFreeText(meetingResponseDTO.getFreeText());
+        result.setIsPendingRequired(meetingResponseDTO.getIsPendingRequired());
+        result.setAttendees(meetingResponseDTO.getAttendees());
+        result.setPendingAttendees(meetingResponseDTO.getPendingAttendees());
 
         return result;
     }

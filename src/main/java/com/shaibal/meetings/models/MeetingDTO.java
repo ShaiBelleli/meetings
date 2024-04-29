@@ -26,6 +26,7 @@ public class MeetingDTO {
     private Boolean isAllowingAttendanceAfterStartTime;
     private Integer minAge;
     private Integer maxAge;
+    private Boolean isPendingRequired;
     @NonNull
     private Location location;
     private String purpose;

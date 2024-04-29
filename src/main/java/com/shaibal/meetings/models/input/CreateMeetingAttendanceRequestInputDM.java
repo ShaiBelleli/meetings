@@ -13,4 +13,5 @@ public class CreateMeetingAttendanceRequestInputDM {
     private String userDisplayName;
     private Integer userAge;
     private String instagramUrl;
+    private String gender;
 }

@@ -11,9 +11,12 @@ public class MeetingAttendanceRequestEntityToMeetingAttendanceRequestResponseDTO
         return MeetingAttendanceRequestResponseDTO.builder()
                 .id(src.getId())
                 .meetingId(src.getMeetingId())
+                .status(src.getStatus())
+                .gender(src.getGender())
                 .instagramUrl(src.getInstagramUrl())
                 .userAge(src.getUserAge())
                 .userDisplayName(src.getUserDisplayName())
+                .status(src.getStatus())
                 .build();
     }
 }

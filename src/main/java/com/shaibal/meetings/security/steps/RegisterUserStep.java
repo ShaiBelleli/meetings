@@ -41,6 +41,7 @@ public class RegisterUserStep implements IStep {
                 .email(request.getEmail())
                 .displayName(request.getDisplayName())
                 .instagramUrl(request.getInstagramUrl())
+                .gender(request.getGender())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .age(request.getAge())
                 .roles(List.of(Role.GUEST))

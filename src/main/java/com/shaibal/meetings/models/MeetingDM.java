@@ -19,6 +19,7 @@ public class MeetingDM {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Boolean isAllowingAttendanceAfterStartTime;
+    private Boolean isPendingRequired;
     private Integer minAge;
     private Integer maxAge;
     private Location location;

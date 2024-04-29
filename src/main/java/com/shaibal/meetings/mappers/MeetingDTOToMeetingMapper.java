@@ -22,6 +22,7 @@ public class MeetingDTOToMeetingMapper implements IMapper<Meeting, MeetingDTO> {
                 .location(meetingDTO.getLocation())
                 .purpose(meetingDTO.getPurpose())
                 .freeText(meetingDTO.getFreeText())
+                .isPendingRequired(meetingDTO.getIsPendingRequired())
                 .currentNumOfAttendees(1)
                 .attendees(new HashSet<>() {{ add(meetingDTO.getOrganizer()); }})
                 .pendingAttendees(new HashSet<>())

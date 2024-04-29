@@ -19,6 +19,7 @@ public class PrepareCreateMeetingAttendanceRequestInputStep implements IStep {
                         .userAge(userDetails.getAge())
                         .instagramUrl(userDetails.getInstagramUrl())
                         .userDisplayName(userDetails.getDisplayName())
+                        .gender(userDetails.getGender())
                         .build();
 
         context.setValue(ContextConstants.CREATE_MEETING_ATTENDANCE_REQUEST_INPUT, createMeetingAttendanceRequestInputDM);
